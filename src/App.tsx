@@ -19,7 +19,6 @@ const initailValue = {
 const App = () => {
   const [formData, setFormData] = useState(initailValue);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  //testing
 
   const onSubmit = (): void => {
     const { email, password } = formData;
