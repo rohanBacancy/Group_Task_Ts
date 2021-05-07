@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,FC } from "react";
+import { useHistory } from "react-router";
 import {
   Button,
   Card,
@@ -8,15 +9,15 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import "./App.css";
-import CustomInput from "./Components/customInput";
-import { checkValidation } from "./helper";
+import CustomInput from "../Components/customInput";
+import { checkValidation } from "../helper";
 
 const initailValue = {
   email: "",
   password: "",
 };
-const App = () => {
+const Login:FC = () => {
+  const history=useHistory();
   const [formData, setFormData] = useState(initailValue);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -29,7 +30,8 @@ const App = () => {
     if (Object.keys(validationError).length !== 0) {
       setErrors(validationError);
     } else {
-      alert("Submiting.!!!");
+        window.localStorage.setItem('userId',email);
+        history.push('/dashboard');
     }
   };
 
@@ -92,4 +94,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Login;
