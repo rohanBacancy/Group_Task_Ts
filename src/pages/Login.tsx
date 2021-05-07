@@ -1,4 +1,5 @@
-import React, { useState,FC } from "react";
+import axios from "axios";
+import React, { useState, FC } from "react";
 import { useHistory } from "react-router";
 import {
   Button,
@@ -10,16 +11,31 @@ import {
   Row,
 } from "reactstrap";
 import CustomInput from "../Components/customInput";
-import { checkValidation } from "../helper";
+import { checkValidation, setItemInStorage } from "../helper";
+import { useAuth } from '../Hooks/useAuth';
+
 
 const initailValue = {
   email: "",
   password: "",
 };
-const Login:FC = () => {
-  const history=useHistory();
+
+const Login: FC = () => {
+  const history = useHistory();
+  const auth = useAuth();
+
   const [formData, setFormData] = useState(initailValue);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  
+
+  interface user {
+    id: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+  }
+
 
   const onSubmit = (): void => {
     const { email, password } = formData;
@@ -30,8 +46,18 @@ const Login:FC = () => {
     if (Object.keys(validationError).length !== 0) {
       setErrors(validationError);
     } else {
-        window.localStorage.setItem('userId',email);
-        history.push('/dashboard');
+      axios.get('https://6094e51894009e00176b5f56.mockapi.io/users')
+        .then(res => {
+          res.data.forEach((user: user) => {
+            if (user.email === email && user.password === password) {
+              auth.login()
+              setItemInStorage('userId', user.id)
+              history.push('/');
+            }
+          });
+        })
+        .catch(err => alert(err))
+
     }
   };
 
