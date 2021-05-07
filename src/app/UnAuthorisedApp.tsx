@@ -1,14 +1,14 @@
-import React,{FC} from 'react';
+import React, { FC, lazy } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
-import Login from '../pages/Login';
 
-//const LandingPage = lazy(() => import('../pages/LandingPage'));
+const Login = lazy(() => import('../pages/Login'));
 
-const UnAuthorisedApp:FC = () => {
+const UnAuthorisedApp: FC = () => {
   const location = useLocation();
+
   return (
     <Switch>
-      <Route path="/" component={Login}/>
+      <Route path="/" component={Login} />
       <Redirect
         to={{
           pathname: '/',

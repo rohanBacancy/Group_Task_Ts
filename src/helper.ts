@@ -20,7 +20,7 @@ export const getRegExp = (type: string): RegExp => {
             regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g;
             break;
         case "password":
-            regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+            regex = /^[a-z0-9A-Z]+$/;
             break;
         default:
             break;
@@ -46,4 +46,17 @@ export const checkValidation = (
     });
     return finalErrors;
 
+};
+
+export const getItemFromStorage = (key : string) => {
+    const item = window.localStorage.getItem(key);
+    return item ? JSON.parse(item) : null;
+};
+
+export const setItemInStorage = (name : string, data : string) => {
+    window.localStorage.setItem(name, data);
+};
+
+export const removeItemFromStorage = (name : string) => {
+    window.localStorage.removeItem(name);
 };
