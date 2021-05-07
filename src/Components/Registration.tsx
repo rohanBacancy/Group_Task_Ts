@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { checkValidation } from "../../helper";
+import { checkValidation } from "../helper";
 import axios from 'axios'
 import {
     Button,
@@ -10,7 +10,7 @@ import {
     Container,
     Row,
   } from "reactstrap";
-  import CustomInput from "../../Components/customInput";
+  import CustomInput from "../Components/customInput";
 
 
 
