@@ -52,7 +52,7 @@ const PostCard:React.FC<PostCardProps> = ({post,setForceRenderPosts}) => {
     }
 
     return (
-        <Col sm="6">
+        <Col sm="12" >
             
             <Card body>
                 { loading ? <Loader/> :
