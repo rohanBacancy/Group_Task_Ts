@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 import { useHistory } from "react-router";
 import {
   Button,
@@ -72,6 +72,10 @@ const Login: FC = () => {
     });
   };
 
+  const onRegister = (): void => {
+    history.push("/Register")
+  }
+
   const { email, password } = formData;
   return (
     <Container>
@@ -89,7 +93,7 @@ const Login: FC = () => {
                 label='Email'
                 placeholder={"Enter email"}
                 isRequired={true}
-                reqType={"email"}
+                //reqType={"email"}
                 onChange={onChange}
                 validationHandler={validationHandler}
                 error={errors.email}
@@ -102,16 +106,20 @@ const Login: FC = () => {
                 label='Password'
                 placeholder={"Enter password"}
                 isRequired={true}
-                reqType={"password"}
+                //reqType={"password"}
                 onChange={onChange}
                 validationHandler={validationHandler}
                 error={errors.password}
                 helperText='Password must contain one capital latter, number and specical character with at least 8 character long.'
               />
-
+              <Row xs='2'>
               <Button color='primary' onClick={onSubmit}>
                 Submit
               </Button>
+              <Button color="link" onClick={onRegister}>
+                Register
+              </Button>
+              </Row>
             </CardBody>
           </Card>
         </Col>
