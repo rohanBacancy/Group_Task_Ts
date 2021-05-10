@@ -10,6 +10,7 @@ interface PostCardProps
     setForceRenderPosts: React.Dispatch<React.SetStateAction<number>>
 }
 
+
 const PostCard:React.FC<PostCardProps> = ({post,setForceRenderPosts}) => {
 
     const [liked,setLiked] = useState(false);
@@ -24,7 +25,7 @@ const PostCard:React.FC<PostCardProps> = ({post,setForceRenderPosts}) => {
             axios.put(`https://6094e51894009e00176b5f56.mockapi.io/posts/${post.id}`,payload)
             .then(res => {setForceRenderPosts(prevState => prevState+1); setLoading(false);})
             .catch(err => {alert(err); setLoading(false);})
-            
+
 
         } else{
             setLiked(true)
@@ -53,7 +54,7 @@ const PostCard:React.FC<PostCardProps> = ({post,setForceRenderPosts}) => {
 
     return (
         <Col sm="12" >
-            
+
             <Card body>
                 { loading ? <Loader/> :
                 <>
@@ -68,7 +69,7 @@ const PostCard:React.FC<PostCardProps> = ({post,setForceRenderPosts}) => {
             </>
                 }
             </Card>
-            
+
         </Col>
     )
 }
