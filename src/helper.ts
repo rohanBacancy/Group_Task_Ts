@@ -20,7 +20,8 @@ export const getRegExp = (type: string): RegExp => {
             regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g;
             break;
         case "password":
-            regex = /^[a-z0-9A-Z]+$/;
+            // regex = /^[a-z0-9A-Z]+$/;
+            regex = /[^\s]*/
             break;
         default:
             break;

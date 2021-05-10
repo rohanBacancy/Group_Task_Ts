@@ -26,7 +26,7 @@ const Login: FC = () => {
 
   const [formData, setFormData] = useState(initailValue);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  
+
 
   interface user {
     id: string,

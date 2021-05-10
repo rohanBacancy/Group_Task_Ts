@@ -7,6 +7,7 @@ import ReactPaginate from 'react-paginate';
 import BackDrop from '../Components/Backdrop/Backdrop';
 import Spinner from '../Components/Spinner/Spinner';
 import './Dashboard.css';
+import AddPost from '../Components/AddPost/AddPost';
 
 const Dashboard:FC = () => {
 
@@ -17,8 +18,8 @@ const Dashboard:FC = () => {
     const pagesVisited:number = pageNumber * usersPerPage;
     const pageCount:number = Math.ceil(posts.length / usersPerPage);
     const [isLoading, setIsLoading] = useState<boolean>(true)
-  
-    
+
+
 
     useEffect(() => {
         console.log("Posts ReFetched")
@@ -34,10 +35,11 @@ const Dashboard:FC = () => {
          <PostCard key={post.id} post={post} setForceRenderPosts={setForceRenderPosts}/>
       );
     });
-    
+
     return (
         <React.Fragment>
         <BackDrop show={isLoading}><Spinner /></BackDrop>
+        <AddPost/>
         <Container>
             <Row>
                {displayUsers}
@@ -57,6 +59,7 @@ const Dashboard:FC = () => {
                  />
                 </div>
             </Row>
+
         </Container>
         </React.Fragment>
     )
